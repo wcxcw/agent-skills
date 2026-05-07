@@ -115,7 +115,57 @@ Use agent definitions from `agents/` as Copilot personas and skill content in `.
 </details>
 
 <details>
-<summary><b>Codex / Other Agents</b></summary>
+<summary><b>Codex</b></summary>
+
+Install this repository as a local Codex plugin marketplace:
+
+```bash
+codex plugin marketplace add /path/to/agent-skills
+```
+
+Enable the plugin in Codex App under **Settings → Plugins → Agent Skills**, or add this to `~/.codex/config.toml`:
+
+```toml
+[plugins."agent-skills@addy-agent-skills"]
+enabled = true
+```
+
+If you enabled it by editing `config.toml`, install the local plugin package into Codex's plugin cache:
+
+```bash
+bash scripts/sync-codex-plugin.sh --cache
+```
+
+Start a new Codex session after enabling it. Codex does not use Claude slash commands directly, so invoke the same workflows with natural-language prompts:
+
+| Claude command | Codex prompt | Principle |
+|----------------|--------------|-----------|
+| `/spec` | `使用 spec-driven-development，帮我为这个功能写 SPEC.md` | Spec before code |
+| `/plan` | `使用 planning-and-task-breakdown，把 SPEC.md 拆成小的可验证任务` | Small, atomic tasks |
+| `/build` | `使用 incremental-implementation 和 test-driven-development，按计划增量实现下一项任务` | One slice at a time |
+| `/test` | `使用 test-driven-development，先写失败测试，再实现并验证` | Tests are proof |
+| `/review` | `使用 code-review-and-quality，review 当前 git diff` | Improve code health |
+| `/code-simplify` | `使用 code-simplification，简化指定代码但保持行为不变` | Clarity over cleverness |
+| `/ship` | `使用 shipping-and-launch，做发布前检查并给出 go/no-go 判断` | Ship with rollback |
+
+When unsure which workflow applies, ask Codex to route the task first:
+
+```text
+使用 using-agent-skills，判断这个任务该用哪些 skills
+```
+
+Codex uses the self-contained plugin package under `plugins/agent-skills/`. The top-level `skills/` and `references/` directories remain the source of truth; after changing them, refresh the Codex plugin mirror and cache:
+
+```bash
+bash scripts/sync-codex-plugin.sh --cache
+```
+
+Claude Code, OpenCode, Gemini CLI, and other integrations continue to use their existing configuration files unchanged.
+
+</details>
+
+<details>
+<summary><b>Other Agents</b></summary>
 
 Skills are plain Markdown - they work with any agent that accepts system prompts or instruction files. See [docs/getting-started.md](docs/getting-started.md).
 

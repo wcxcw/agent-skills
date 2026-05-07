@@ -1,0 +1,41 @@
+{
+  "name": "agent-skills",
+  "version": "1.0.0",
+  "description": "Production-grade engineering skills for AI coding agents — covering the full software development lifecycle from spec to ship.",
+  "author": {
+    "name": "Addy Osmani"
+  },
+  "homepage": "https://github.com/addyosmani/agent-skills",
+  "repository": "https://github.com/addyosmani/agent-skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "software-engineering",
+    "spec-driven-development",
+    "testing",
+    "code-review"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Skills",
+    "shortDescription": "Production-grade engineering workflows for Codex",
+    "longDescription": "Agent Skills gives Codex a set of senior engineering workflows across the full development lifecycle: refine ideas, write specs, plan tasks, build incrementally, test, debug, review, simplify, and prepare releases.",
+    "developerName": "Addy Osmani",
+    "category": "Engineering",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/addyosmani/agent-skills",
+    "privacyPolicyURL": "https://github.com/addyosmani/agent-skills",
+    "termsOfServiceURL": "https://github.com/addyosmani/agent-skills",
+    "defaultPrompt": [
+      "Write a spec for this feature",
+      "Break this project into tasks",
+      "Review this change before shipping"
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}
